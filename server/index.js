@@ -16,8 +16,23 @@ app.get("/", (req, res) => {
 const server = http.createServer(app);
 const io = socketIO(server);
 
-io.on("connection", () => {
+let users = [{}];
+
+io.on("connection", (socket) => {
   console.log("new connection");
+
+  socket.on("joined", ({ User }) => {
+    users[socket.id] = User;
+    console.log(`${User} has joined`);
+    
+    socket.broadcast.emit("userJoined", {
+      user: "Admin",
+      message: `${users[socket.id]} has joined the chat!`,
+    });
+    
+  });
+
+  socket.emit("welcome", { user: "Admin", message: "Welcome to the Chat!" });
 });
 
 server.listen(port, () => {

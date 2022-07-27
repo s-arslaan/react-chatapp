@@ -5,7 +5,6 @@ import Chat from "./Components/Chat/Chat";
 import Join from "./Components/Join/Join";
 
 // const ENDPOINT = "http://localhost:4500";
-// const socket = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 function App() {
   return (
