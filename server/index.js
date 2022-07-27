@@ -24,15 +24,31 @@ io.on("connection", (socket) => {
   socket.on("joined", ({ User }) => {
     users[socket.id] = User;
     console.log(`${User} has joined`);
-    
+
     socket.broadcast.emit("userJoined", {
       user: "Admin",
       message: `${users[socket.id]} has joined the chat!`,
     });
-    
+
+    socket.emit("welcome", {
+      user: "Admin",
+      message: `Welcome to the Chat, ${User}`,
+    });
   });
 
-  socket.emit("welcome", { user: "Admin", message: "Welcome to the Chat!" });
+  socket.on("msg", ({msg, id}) => {
+    // this will send to everyone including you
+    io.emit('sendMsg',{user:users[id],msg})
+  });
+
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("leave", {
+      user: "Admin",
+      message: `${users[socket.id]} has left the chat!`,
+    });
+
+    console.log("user left");
+  });
 });
 
 server.listen(port, () => {
