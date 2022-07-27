@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Join.css";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 
 let User;
 
+const sendUser = () => {
+  User = document.getElementById("joinInput").value;
+  // document.getElementById("joinInput").value = "";
+  console.log(User);
+};
+
 function Join() {
-  const sendUser = () => {
-    User = document.getElementById("joinInput").value;
-  };
+  const [name, setName] = useState("");
+  console.log(name);
 
   return (
     <div className="JoinPage">
@@ -20,8 +25,9 @@ function Join() {
           type="text"
           name=""
           id="joinInput"
+          onChange={(e) => setName(e.target.value)}
         />
-        <Link to="/chat">
+        <Link onClick={(e) => (!name ? e.preventDefault() : null)} to="/chat">
           <button onClick={sendUser} className="joinbtn">
             Login In
           </button>

@@ -1,8 +1,11 @@
 import React from 'react'
+import { User } from '../Join/Join'
 
 function Chat() {
   return (
-    <h1>Chat</h1>
+    <div>
+      <h1>{User}</h1>
+    </div>
   )
 }
 
