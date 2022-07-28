@@ -13,7 +13,7 @@ const sendUser = () => {
 
 function Join() {
   const [name, setName] = useState("");
-  console.log(name);
+  // console.log(name);
 
   return (
     <div className="JoinPage">
