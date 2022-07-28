@@ -8,7 +8,8 @@ import Message from "../Message/Message";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 let socket;
-const ENDPOINT = "http://localhost:4500";
+// const ENDPOINT = "http://localhost:4500";
+const ENDPOINT = "https://rct-chatapp.herokuapp.com/";
 // const socket = io(ENDPOINT, { transports: ["websocket"] });
 
 function Chat() {
