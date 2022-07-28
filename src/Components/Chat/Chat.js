@@ -22,7 +22,7 @@ function Chat() {
         document.getElementById("chatInput").value = "";
     };
 
-    console.log(messages);
+    // console.log(messages);
 
     useEffect(() => {
         socket = io(ENDPOINT, { transports: ["websocket"] });
@@ -36,23 +36,24 @@ function Chat() {
 
         socket.on("welcome", (data) => {
             setMessages([...messages, data]);
-            console.log(data.user, ": ", data.message);
+            // console.log(data.user, ": ", data.message);
         });
 
         socket.on("userJoined", (data) => {
             setMessages([...messages, data]);
-            console.log(data.user, ": ", data.message);
+            // console.log(data.user, ": ", data.message);
         });
 
         socket.on("leave", (data) => {
             setMessages([...messages, data]);
-            console.log(data.user, ": ", data.message);
+            // console.log(data.user, ": ", data.message);
         });
 
         return () => {
             // socket.emit('disconnect');
             socket.off();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
