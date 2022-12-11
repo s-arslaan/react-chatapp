@@ -9,7 +9,8 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 let socket;
 // const ENDPOINT = "http://localhost:4500";
-const ENDPOINT = "https://rct-chatapp.herokuapp.com/";
+const ENDPOINT = "https://arschat.onrender.com/";
+// const ENDPOINT = "https://rct-chatapp.herokuapp.com/";
 // const socket = io(ENDPOINT, { transports: ["websocket"] });
 
 function Chat() {
