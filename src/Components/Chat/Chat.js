@@ -8,8 +8,8 @@ import Message from "../Message/Message";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 let socket;
-// const ENDPOINT = "http://localhost:4500";
 const ENDPOINT = "https://arschat.onrender.com/";
+// const ENDPOINT = "http://localhost:4500";
 // const ENDPOINT = "https://rct-chatapp.herokuapp.com/";
 // const socket = io(ENDPOINT, { transports: ["websocket"] });
 
@@ -37,17 +37,7 @@ function Chat() {
 
         socket.on("welcome", (data) => {
             setMessages([...messages, data]);
-            // console.log(data.user, ": ", data.message);
-        });
-
-        socket.on("userJoined", (data) => {
-            setMessages([...messages, data]);
-            // console.log(data.user, ": ", data.message);
-        });
-
-        socket.on("leave", (data) => {
-            setMessages([...messages, data]);
-            // console.log(data.user, ": ", data.message);
+            // console.log(data.user, " (welcome): ", data.message);
         });
 
         return () => {
@@ -60,7 +50,17 @@ function Chat() {
     useEffect(() => {
         socket.on("sendMsg", (data) => {
             setMessages([...messages, data]);
-            console.log(data);
+            // console.log(data);
+        });
+
+        socket.on("userJoined", (data) => {
+            setMessages([...messages, data]);
+            // console.log(data.user, " (userjoined): ", data.message);
+        });
+
+        socket.on("leave", (data) => {
+            setMessages([...messages, data]);
+            // console.log(data.user, ": ", data.message);
         });
 
         return () => {
@@ -84,6 +84,7 @@ function Chat() {
                             user={item.id === id ? "" : item.user}
                             message={item.message}
                             classs={item.id === id ? "right" : "left"}
+                            key={i}
                         />
                     ))}
                 </ScrollToBottom>
